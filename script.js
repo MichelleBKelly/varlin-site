@@ -162,3 +162,14 @@
     btn.disabled = false;
   });
 })();
+
+/* Start the "how it works" animations when each layer scrolls into view */
+(function () {
+  var layers = document.querySelectorAll('.layer');
+  if (!layers.length) { return; }
+  if (!('IntersectionObserver' in window)) { layers.forEach(function (l) { l.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { en.target.classList.toggle('in', en.isIntersecting); });
+  }, { threshold: 0.25 });
+  layers.forEach(function (l) { io.observe(l); });
+})();
