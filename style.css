@@ -33,13 +33,13 @@ body {
 
 .logo {
   justify-self: start;
-  display: block; font-weight: 500; font-size: 2.15rem; letter-spacing: 0.22em; line-height: 1;
+  display: block; font-weight: 500; font-size: 2.25rem; letter-spacing: 0.22em; line-height: 1;
   color: var(--ink); text-decoration: none;
 }
 .lam { display: inline-block; transform: scaleY(-1); }
 h1 {
   margin: 0; max-width: 15ch; text-align: center;
-  font-weight: 500; font-size: clamp(2.4rem, 7.6vw, 6.6rem);
+  font-weight: 500; font-size: clamp(2.05rem, 6.6vw, 5.6rem);
   line-height: 0.98; letter-spacing: -0.035em;
   text-wrap: balance;
 }
@@ -58,14 +58,14 @@ h1 {
 .wl:focus-within { outline: 2px solid var(--ink); outline-offset: 2px; }
 .wl input {
   flex: 1 1 auto; min-width: 0;
-  font-family: inherit; font-size: 0.9rem; font-weight: 400; color: var(--ink);
-  padding: 10px 14px; border: 0; border-radius: 0; background: transparent;
+  font-family: inherit; font-size: 1.12rem; font-weight: 400; color: var(--ink);
+  padding: 14px 17px; border: 0; border-radius: 0; background: transparent;
 }
 .wl input::placeholder { color: var(--muted); }
 .wl input:focus-visible { outline: none; }
 .wl button {
-  flex: 0 0 auto; font-family: inherit; font-size: 0.9rem; font-weight: 500;
-  padding: 10px 18px; border: 0; border-radius: 0;
+  flex: 0 0 auto; font-family: inherit; font-size: 1.12rem; font-weight: 500;
+  padding: 14px 21px; border: 0; border-radius: 0;
   background: var(--ink); color: var(--bg); cursor: pointer;
 }
 .wl button:hover { opacity: .88; }
@@ -75,7 +75,7 @@ h1 {
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .contact {
   justify-self: start;
-  color: var(--muted); text-decoration: none; font-size: 2rem;
+  color: var(--muted); text-decoration: none; font-size: 2.1rem;
   border-bottom: 1px solid transparent; padding-bottom: 2px;
   transition: color .2s, border-color .2s;
 }
