@@ -1,14 +1,19 @@
 /* Background: interactive grain + smoke (WebGL) */
 (function () {
   var canvas = document.getElementById('field');
-  var gl = canvas.getContext('webgl', { antialias: false, alpha: false });
+  var opts = { antialias: false, alpha: false };
+  var gl = canvas.getContext('webgl', opts) || canvas.getContext('experimental-webgl', opts);
   if (!gl) { return; }
+
+  // Some mobile GPUs lack highp in fragment shaders; fall back to mediump instead of failing
+  var hp = gl.getShaderPrecisionFormat && gl.getShaderPrecisionFormat(gl.FRAGMENT_SHADER, gl.HIGH_FLOAT);
+  var precision = hp && hp.precision > 0 ? 'highp' : 'mediump';
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var vs = 'attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }';
   var fs = [
-    'precision highp float;',
+    'precision ' + precision + ' float;',
     'uniform vec2 uRes; uniform float uTime; uniform vec2 uMouse; uniform float uEnergy;',
     'uniform vec3 uBg; uniform vec3 uInk;',
     'float hash(vec2 p){ p = fract(p*vec2(123.34,456.21)); p += dot(p,p+45.32); return fract(p.x*p.y); }',
@@ -20,9 +25,10 @@
     'void main(){',
     '  vec2 frag = gl_FragCoord.xy;',
     '  vec2 uv = frag / uRes;',
-    '  float asp = uRes.x / uRes.y;',
-    '  vec2 q = vec2(uv.x*asp, uv.y);',
-    '  vec2 m = vec2(uMouse.x*asp, uMouse.y);',
+    // scale by the shorter side so portrait phones see as much smoke as landscape desktops
+    '  float sc = min(uRes.x, uRes.y);',
+    '  vec2 q = frag / sc;',
+    '  vec2 m = uMouse * uRes / sc;',
     '  vec2 d = q - m;',
     '  float dist = length(d);',
     '  float field = exp(-dist*dist*14.0);',
@@ -38,7 +44,7 @@
     '  smoke = pow(smoke, 1.5);',
     // fixed fine grain, no flicker
     '  float cell = max(1.0, uRes.y/900.);',
-    '  vec2 gp = floor(frag/cell);',
+    '  vec2 gp = mod(floor(frag/cell), 512.0);',
     '  float grain = hash(gp) + hash(gp + 31.7) - 1.0;',
     '  float L = smoke*0.92 + field*(0.03 + uEnergy*0.03);',
     '  float lum = 0.03 + L + grain*0.10*(0.55 + L);',
@@ -104,7 +110,8 @@
     cur.y += (target.y - cur.y) * k;
     var speed = Math.hypot(cur.x - px, cur.y - py) / Math.max(dt, 0.001);
     energy += (Math.min(speed * 0.6, 0.6) - energy) * (1 - Math.exp(-dt * 4));
-    gl.uniform1f(U.uTime, reduce ? 0 : (now - start) / 1000);
+    // wrap time so it stays precise on mediump GPUs
+    gl.uniform1f(U.uTime, reduce ? 0 : ((now - start) / 1000) % 1000);
     gl.uniform2f(U.uMouse, cur.x, cur.y);
     gl.uniform1f(U.uEnergy, energy);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
