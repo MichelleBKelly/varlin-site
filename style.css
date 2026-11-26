@@ -40,7 +40,7 @@ main > section + section { border-top: 1px solid var(--line); }
 .contact:hover, .contact:focus-visible { color: var(--ink); border-color: currentColor; }
 
 /* Type */
-h1 { font-weight: 500; font-size: clamp(2.5rem, 7vw, 5.4rem); line-height: 1.1; letter-spacing: -0.035em; text-wrap: balance; }
+h1 { font-weight: 500; font-size: clamp(2.5rem, 7vw, 5.4rem); line-height: 1.2; letter-spacing: -0.035em; text-wrap: balance; }
 h2 { font-weight: 500; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -0.025em; max-width: 24ch; text-wrap: balance; }
 h3 { font-weight: 500; font-size: 1.2rem; line-height: 1.2; letter-spacing: -0.01em; }
 .eyebrow { margin-bottom: 18px; font-family: var(--mono); font-size: .78rem; color: var(--muted); }
