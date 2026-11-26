@@ -121,9 +121,7 @@
 
 /* Waitlist form */
 (function () {
-  // To collect emails on your own site, paste a form endpoint here (for example a Formspree URL).
-  // While it is empty, the button opens the visitor's email app with a pre-filled message instead.
-  var WAITLIST_ENDPOINT = '';
+  var WAITLIST_ENDPOINT = 'https://formspree.io/f/mnpdwlrk';
 
   var form = document.getElementById('wl');
   var input = document.getElementById('wl-email');
@@ -137,10 +135,12 @@
     var sent = false;
     if (WAITLIST_ENDPOINT) {
       try {
+        var data = new FormData(form);
+        data.set('email', email);
         var res = await fetch(WAITLIST_ENDPOINT, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email: email })
+          headers: { 'Accept': 'application/json' },
+          body: data
         });
         sent = res.ok;
       } catch (err) { sent = false; }
@@ -149,8 +149,7 @@
       msg.textContent = 'You\u2019re on the list. We\u2019ll email you at launch.';
       form.reset();
     } else {
-      msg.textContent = 'Opening your email app to finish joining.';
-      window.location.href = 'mailto:hello@varlin.dev?subject=' + encodeURIComponent('Join the waitlist') + '&body=' + encodeURIComponent('Please add ' + email + ' to the Varlin waitlist.');
+      msg.textContent = 'Could not join right now. Please try again shortly.';
     }
     btn.disabled = false;
   });
