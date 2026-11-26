@@ -113,6 +113,37 @@
   requestAnimationFrame(frame);
 })();
 
+/* Submit the diagnostic form without leaving the page */
+(function () {
+  var form = document.getElementById('dx-form');
+  if (!form) { return; }
+  var msg = document.getElementById('dx-msg');
+  var button = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    button.disabled = true;
+    msg.textContent = 'Sending…';
+
+    try {
+      var response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (!response.ok) { throw new Error('Submission failed'); }
+      form.reset();
+      form.querySelectorAll('.field').forEach(function (field) { field.hidden = true; });
+      button.hidden = true;
+      msg.textContent = 'Submitted';
+    } catch (error) {
+      msg.textContent = 'Could not send your request. Please try again.';
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+
 /* Start the "how it works" animations when each layer scrolls into view */
 (function () {
   var layers = document.querySelectorAll('.layer');
