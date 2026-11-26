@@ -119,38 +119,69 @@
   requestAnimationFrame(frame);
 })();
 
-/* Waitlist form */
+/* Diagnostic request form */
 (function () {
-  var WAITLIST_ENDPOINT = 'https://formspree.io/f/mnpdwlrk';
+  // To collect requests on your own site, paste a form endpoint here (for example a Formspree URL).
+  // While it is empty, the button opens the visitor's email app with a pre-filled message instead.
+  var DIAGNOSTIC_ENDPOINT = '';
 
-  var form = document.getElementById('wl');
-  var input = document.getElementById('wl-email');
-  var msg = document.getElementById('wl-msg');
-  var btn = form.querySelector('button');
+  var form = document.getElementById('dx-form');
+  if (!form) { return; }
+  var msg = document.getElementById('dx-msg');
+  var btn = form.querySelector('button[type="submit"]');
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    var email = input.value.trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Enter a valid email address.'; input.focus(); return; }
-    btn.disabled = true; msg.textContent = 'Joining…';
+    var email = form.email.value.trim().toLowerCase();
+    var company = form.company.value.trim();
+    var workflow = form.workflow.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.textContent = 'Enter a valid email address.';
+      form.email.focus();
+      return;
+    }
+    btn.disabled = true;
+    msg.textContent = 'Sending\u2026';
+
     var sent = false;
-    if (WAITLIST_ENDPOINT) {
+    if (DIAGNOSTIC_ENDPOINT) {
       try {
-        var data = new FormData(form);
-        data.set('email', email);
-        var res = await fetch(WAITLIST_ENDPOINT, {
+        var res = await fetch(DIAGNOSTIC_ENDPOINT, {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: data
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email, company: company, workflow: workflow })
         });
         sent = res.ok;
       } catch (err) { sent = false; }
     }
+
     if (sent) {
-      msg.textContent = 'You\u2019re on the list. We\u2019ll email you at launch.';
+      msg.textContent = 'Request received. We will follow up by email.';
       form.reset();
     } else {
-      msg.textContent = 'Could not join right now. Please try again shortly.';
+      msg.textContent = 'Opening your email app to finish your request.';
+      var body = 'Please send me the free trace diagnostic.\n\nWork email: ' + email +
+        '\nCompany: ' + (company || '-') + '\nWhat the agent does: ' + (workflow || '-');
+      window.location.href = 'mailto:hello@varlin.dev?subject=' +
+        encodeURIComponent('Free Trace Diagnostic request') + '&body=' + encodeURIComponent(body);
     }
     btn.disabled = false;
+  });
+})();
+
+/* Light syntax highlighting for the illustrative code block */
+(function () {
+  var blocks = document.querySelectorAll('pre.code code');
+  var re = /(#[^\n]*)|("(?:[^"\\]|\\.)*")|\b(def|if|raise|return|from|import|and|or|not|in|is|None|True|False)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_]\w*)(?=\()/g;
+  blocks.forEach(function (el) {
+    var src = el.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    el.innerHTML = src.replace(re, function (m, c, s, k, n, f) {
+      if (c) { return '<span class="tk-c">' + c + '</span>'; }
+      if (s) { return '<span class="tk-s">' + s + '</span>'; }
+      if (k) { return '<span class="tk-k">' + k + '</span>'; }
+      if (n) { return '<span class="tk-n">' + n + '</span>'; }
+      if (f) { return '<span class="tk-f">' + f + '</span>'; }
+      return m;
+    });
   });
 })();
