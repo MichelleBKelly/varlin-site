@@ -5,7 +5,6 @@
   if (!gl) { return; }
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var dark = window.matchMedia('(prefers-color-scheme: dark)');
 
   var vs = 'attribute vec2 p; void main(){ gl_Position = vec4(p,0.,1.); }';
   var fs = [
@@ -83,14 +82,9 @@
   window.addEventListener('resize', resize);
   resize();
 
-  function palette() {
-    var root = document.documentElement.getAttribute('data-theme');
-    var isDark = root ? root === 'dark' : dark.matches;
-    if (isDark) { gl.uniform3f(U.uBg, 0.031, 0.039, 0.059); gl.uniform3f(U.uInk, 0.925, 0.933, 0.949); }
-    else { gl.uniform3f(U.uBg, 0.925, 0.933, 0.949); gl.uniform3f(U.uInk, 0.047, 0.055, 0.075); }
-  }
-  palette();
-  if (dark.addEventListener) { dark.addEventListener('change', palette); }
+  // Always dark, regardless of the visitor's device setting
+  gl.uniform3f(U.uBg, 0.031, 0.039, 0.059);
+  gl.uniform3f(U.uInk, 0.925, 0.933, 0.949);
 
   // mouse state: target, smoothed position, and movement energy
   var target = { x: 0.5, y: 0.5 }, cur = { x: 0.5, y: 0.5 }, energy = 0;
@@ -166,22 +160,5 @@
         encodeURIComponent('Free Trace Diagnostic request') + '&body=' + encodeURIComponent(body);
     }
     btn.disabled = false;
-  });
-})();
-
-/* Light syntax highlighting for the illustrative code block */
-(function () {
-  var blocks = document.querySelectorAll('pre.code code');
-  var re = /(#[^\n]*)|("(?:[^"\\]|\\.)*")|\b(def|if|raise|return|from|import|and|or|not|in|is|None|True|False)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_]\w*)(?=\()/g;
-  blocks.forEach(function (el) {
-    var src = el.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    el.innerHTML = src.replace(re, function (m, c, s, k, n, f) {
-      if (c) { return '<span class="tk-c">' + c + '</span>'; }
-      if (s) { return '<span class="tk-s">' + s + '</span>'; }
-      if (k) { return '<span class="tk-k">' + k + '</span>'; }
-      if (n) { return '<span class="tk-n">' + n + '</span>'; }
-      if (f) { return '<span class="tk-f">' + f + '</span>'; }
-      return m;
-    });
   });
 })();

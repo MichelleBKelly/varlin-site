@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="dark light">
+<meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#080a0f">
 
 <title>Varlin | JIT Compiler for Production AI Agents</title>
@@ -67,32 +67,40 @@
 
     <!-- 1. HERO -->
     <section class="hero container">
-      <p class="badge"><span class="dot" aria-hidden="true"></span>Early Beta <span class="sep" aria-hidden="true">|</span> Accepting 5 Design Partners</p>
       <h1>Stop paying LLMs to re-plan the same workflow twice.</h1>
       <p class="lede">Varlin is a Just-In-Time (JIT) compiler for production AI agents. It observes repetitive multi-step LLM loops, compiles predictable execution paths into fast, guarded Python, and falls back to the LLM automatically on edge cases.</p>
       <div class="cta">
         <a class="btn primary" href="#diagnostic">Request a Free Trace Diagnostic</a>
         <a class="btn ghost" href="#how">How It Works</a>
       </div>
-      <p class="micro">Share 5 to 10 staging traces (zero customer data required). Get a 1-page compilability and savings breakdown in 48 hours.</p>
     </section>
 
     <!-- 2. PROBLEM -->
     <section class="container" id="problem">
       <h2>Production agents are stuck in interpreter mode.</h2>
-      <p class="intro">Most teams build multi-step automations as runtime-planning agents because LLMs make it fast to ship. In a November 2026 study of 5,115 real customer automations (ReTrace), 91.8% were deployed as runtime-planning agents. Once those agents hit production, they execute the same 4 to 12 tool calls hundreds or thousands of times a day. Every run re-reads prompts, re-decides the next tool, waits 15 to 45 seconds, burns token margin, and introduces variance into routine operations.</p>
+      <div class="problem-top">
+        <div class="waffle" role="img" aria-label="91.8% of 5,115 automations were deployed as runtime-planning agents"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="problem-stat">
+          <p class="big">91.8%</p>
+          <p>of 5,115 real customer automations run as runtime-planning agents.</p>
+          <p class="cite">ReTrace, Nov 2026</p>
+        </div>
+      </div>
       <div class="grid-3">
-        <article class="card">
+        <article class="card icon-card">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           <h3>Compounding Latency</h3>
-          <p>Stacking 6 to 10 sequential LLM calls turns routine backend actions into 20-second loading spinners.</p>
+          <p>6 to 10 sequential LLM calls turn routine actions into 20-second spinners.</p>
         </article>
-        <article class="card">
+        <article class="card icon-card">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l6 6 4-4 8 8"/><path d="M15 17h6v-6"/></svg>
           <h3>Margin Erosion</h3>
-          <p>Paying frontier-model token rates to orchestrate deterministic API sequences kills unit economics at scale.</p>
+          <p>Frontier token rates for deterministic API sequences wreck unit economics.</p>
         </article>
-        <article class="card">
+        <article class="card icon-card">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h4l4 10h8"/><path d="M4 17h4l4-10h8"/></svg>
           <h3>Unpredictable Behavior</h3>
-          <p>Static scripts break on edge cases, while pure LLM loops improvise when you need strict, auditable execution.</p>
+          <p>Static scripts break on edge cases. Pure LLM loops improvise.</p>
         </article>
       </div>
     </section>
@@ -100,166 +108,91 @@
     <!-- 3. HOW IT WORKS -->
     <section class="container" id="how">
       <h2>Classic JIT compilation, built for agent trajectories.</h2>
-      <p class="intro">Runtimes like V8 and the JVM solved this decades ago: run flexibly first, profile hot paths at runtime, compile repetitive loops into fast code with safety guards, and deoptimize back to the interpreter when an assumption fails. Varlin brings that architecture to tool-calling AI agents.</p>
-      <div class="how-grid">
-        <ol class="steps">
-          <li>
-            <span class="num">01</span>
-            <div>
-              <h3>Observe (Cold Runs)</h3>
-              <p>Your agent runs normally while Varlin logs tool calls, input/output schemas, latency, and branching logic from real or staging traces.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">02</span>
-            <div>
-              <h3>Profile &amp; Compile</h3>
-              <p>Deterministic trace analysis strips out retries and wasted lookups, maps data dependencies, and synthesizes clean, human-readable Python for recurring hot paths. Steps that genuinely require semantic judgment remain focused LLM calls.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">03</span>
-            <div>
-              <h3>Execute Fast (Warm Runs)</h3>
-              <p>Routine requests run directly through the compiled Python path on your stack, skipping redundant planner LLM calls for dramatic speed, cost, and determinism gains.</p>
-            </div>
-          </li>
-          <li>
-            <span class="num">04</span>
-            <div>
-              <h3>Guard &amp; Fallback (Deoptimization)</h3>
-              <p>Explicit runtime guards validate schemas, policy bounds, and preconditions before any write action fires. If an unexpected edge case hits, execution pauses cleanly and hands the already-collected state back to your LLM mid-flight so no work is wasted and nothing breaks.</p>
-            </div>
-          </li>
-        </ol>
-
-        <figure class="term">
-          <figcaption class="term-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="term-label">Illustrative compiled output</span>
-          </figcaption>
-<pre class="code"><code># On GuardViolation, execution pauses and the LLM resumes with the collected state.
-def refund_order(order_id, request):
-    state = {}
-
-    order = orders.get(order_id)
-    state["order"] = order
-    if order.status != "delivered":
-        raise GuardViolation(reason="order_not_delivered", state=state)
-
-    policy = returns.policy_for(order.sku)
-    state["policy"] = policy
-    if days_since(order.delivered_at) &gt; policy.window_days:
-        raise GuardViolation(reason="outside_return_window", state=state)
-    if order.condition == "damaged" and order.total &gt; HIGH_VALUE_LIMIT:
-        raise GuardViolation(reason="high_value_damaged_item", state=state)
-
-    amount = compute_refund(order, policy)
-    state["amount"] = amount
-    if amount &gt; order.amount_paid:
-        raise GuardViolation(reason="refund_exceeds_payment", state=state)
-
-    # All guards passed. Only now does the write action fire.
-    refund = payments.issue_refund(order.charge_id, amount)
-    return draft_confirmation(order, refund)  # focused LLM call, free text only</code></pre>
-        </figure>
-      </div>
+      <p class="intro">The same idea behind V8 and the JVM, applied to tool-calling agents.</p>
+      <ol class="flow">
+        <li>
+          <span class="node">1</span>
+          <h3>Observe</h3>
+          <p>Log tool calls and branching from real or staging traces.</p>
+        </li>
+        <li>
+          <span class="node">2</span>
+          <h3>Compile</h3>
+          <p>Turn hot paths into readable, guarded Python.</p>
+        </li>
+        <li>
+          <span class="node">3</span>
+          <h3>Execute</h3>
+          <p>Run routine requests without planner LLM calls.</p>
+        </li>
+        <li>
+          <span class="node alt">4</span>
+          <h3>Guard &amp; Fallback</h3>
+          <p>On an edge case, hand the collected state back to the LLM.</p>
+        </li>
+      </ol>
     </section>
 
     <!-- 4. ILLUSTRATIVE COMPARISON -->
     <section class="container" id="example">
       <h2>What compilation looks like on a routine workflow</h2>
-      <p class="tag">Illustrative example, not a measured result</p>
-      <p class="intro">Illustrative comparison on a 5-tool customer support refund agent:</p>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Stage</th>
-              <th scope="col">Standard Agent Loop (Interpreter Mode)</th>
-              <th scope="col">Compiled Path with Varlin (Warm Mode)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Routine Request</th>
-              <td>6 to 10 sequential LLM calls to look up order, check return policy, calculate refund, call Stripe, and draft confirmation</td>
-              <td>Compiled Python executes deterministic API checks and tool calls directly (0 to 1 focused LLM calls only if free-text judgment is needed)</td>
-            </tr>
-            <tr>
-              <th scope="row">Typical Behavior</th>
-              <td>15 to 40s latency, high per-run token spend, probabilistic branching</td>
-              <td>Sub-second deterministic execution on the mechanical path with human-readable, auditable code</td>
-            </tr>
-            <tr>
-              <th scope="row">Edge Case (e.g., damaged high-value item past return window)</th>
-              <td>LLM reasons through it slowly from scratch</td>
-              <td>Runtime guard catches the policy exception before any write fires and hands collected order state directly back to the LLM</td>
-            </tr>
-          </tbody>
-        </table>
+      <p class="tag">Illustrative example on a 5-tool support refund agent. Not a measured result.</p>
+      <div class="compare">
+        <div class="row">
+          <p class="row-label">Standard agent loop</p>
+          <div class="bar slow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="row-meta"><strong>6 to 10</strong> LLM calls <span>/</span> <strong>15 to 40s</strong></p>
+        </div>
+        <div class="row">
+          <p class="row-label">Compiled with Varlin</p>
+          <div class="bar fast" aria-hidden="true"><i></i></div>
+          <p class="row-meta"><strong>0 to 1</strong> LLM calls <span>/</span> <strong>sub-second</strong></p>
+        </div>
+      </div>
+      <div class="edge">
+        <span class="chip">Edge case</span>
+        <span class="arrow" aria-hidden="true"></span>
+        <span class="chip warn">Guard trips before any write</span>
+        <span class="arrow" aria-hidden="true"></span>
+        <span class="chip">State goes back to the LLM</span>
       </div>
     </section>
 
     <!-- 5. RESEARCH -->
     <section class="container" id="research">
       <h2>Grounded in late-2026 agent compilation research</h2>
-      <p class="intro">Recent systems research shows how much repetitive orchestration overhead can be compiled out of tool-using agents without sacrificing accuracy:</p>
       <div class="grid-3">
         <article class="card stat-card">
-          <p class="stat">75% to 82% lower cost &amp; 69% to 72% lower latency</p>
-          <p class="cite">SkillCache (Nov 2026, arXiv:2611.10022)</p>
-          <p>Execution-grounded trace compilation into guarded capsules with LLM fallback preserved task quality while slashing orchestration overhead. Measured on 87 SkillsBench tasks with Claude Sonnet 4.6 and Opus 4.8 in the Claude Code harness, with one-time compile cost reported separately.</p>
+          <div class="pair">
+            <p class="stat">75% to 82%<span>lower cost</span></p>
+            <p class="stat">69% to 72%<span>lower latency</span></p>
+          </div>
+          <p class="cite">SkillCache, arXiv:2611.10022</p>
+          <p class="ctx">87 SkillsBench tasks, Claude Sonnet 4.6 and Opus 4.8. Compile cost reported separately.</p>
         </article>
         <article class="card stat-card">
-          <p class="stat">0.40s vs. 46.6s per task</p>
-          <p class="cite">ReTrace (Nov 2026, arXiv:2611.14492)</p>
-          <p>Distilling tool-using agents into planner-free workflows with failure repair reached 87.8% accuracy vs. 85.5% for the full runtime agent on eight SOP-Bench procedures. On 79 production procedures, workflows completed 93.8% of tasks vs. 96.8% for the agent, at 24% lower cost per task.</p>
+          <p class="stat">0.40s vs. 46.6s<span>per task</span></p>
+          <p class="cite">ReTrace, arXiv:2611.14492</p>
+          <p class="ctx">8 SOP-Bench procedures, after repair: 87.8% vs. 85.5% accuracy. On 79 production procedures: 93.8% vs. 96.8% completion, 24% lower cost.</p>
         </article>
         <article class="card stat-card">
-          <p class="stat">1.24x more tokens with naive scripting</p>
-          <p class="cite">SkillCache (Nov 2026, arXiv:2611.10022)</p>
-          <p>Asking an LLM to compile workflows up front without trace grounding used 1.24x the tokens per task (compile call included) and produced silent wrong answers on some tasks, showing why trace-grounded compilation and guards matter.</p>
+          <p class="stat">1.24x<span>more tokens per task without trace grounding</span></p>
+          <p class="cite">SkillCache, arXiv:2611.10022</p>
+          <p class="ctx">Compiling up front, compile call included, with silent wrong answers on some tasks.</p>
         </article>
       </div>
       <p class="footnote">Benchmarks above reflect published academic studies on benchmark workloads, not guaranteed production outcomes. Actual savings depend on workflow repetitiveness and how many steps require open-ended reasoning. Request a free trace diagnostic to measure your exact workflow.</p>
     </section>
 
-    <!-- 6. FIT -->
-    <section class="container" id="fit">
-      <h2>Who it is for (and not for)</h2>
-      <div class="fit-grid">
-        <div class="card">
-          <h3>Best Fit</h3>
-          <p class="sub">High-volume workflows making 4+ tool or LLM calls per run:</p>
-          <ul class="fit-list">
-            <li><strong>Customer Support &amp; CX Agents</strong><span>Refunds, booking updates, account changes, tier-1 ticket resolution.</span></li>
-            <li><strong>Finance, Ops &amp; Compliance Agents</strong><span>Invoice matching, claims triage, onboarding checks, and ERP updates where deterministic auditability matters.</span></li>
-            <li><strong>Browser, UI &amp; QA Automation</strong><span>Repetitive E2E testing, portal form-filling, and RPA workflows.</span></li>
-            <li><strong>RevOps &amp; SRE Triage</strong><span>Multi-tool lead enrichment, alert diagnostics, and incident routing.</span></li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Not Built For</h3>
-          <ul class="fit-list plain">
-            <li>Single-shot RAG or document summarization (1 to 2 LLM calls).</li>
-            <li>Purely creative writing or open-ended brainstorming assistants.</li>
-            <li>Low-volume internal bots running a handful of times per day.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. DIAGNOSTIC -->
+    <!-- 6. DIAGNOSTIC -->
     <section class="container" id="diagnostic">
       <div class="dx">
         <div class="dx-copy">
           <h2>Start with a Free 48-Hour Trace Diagnostic</h2>
-          <p class="intro">Varlin is in early beta and accepting 5 design partners. The diagnostic is the first step: no integration, no customer data.</p>
-          <dl class="dx-list">
-            <div><dt>You send</dt><dd>5 to 10 staging traces from one agent workflow. Zero customer data required.</dd></div>
-            <div><dt>You get, in 48 hours</dt><dd>A 1-page compilability and savings breakdown: which steps can be compiled, which should stay focused LLM calls, and an estimate of the cost and latency impact for your workflow.</dd></div>
-          </dl>
+          <ol class="dx-steps">
+            <li><span class="node">1</span><p>Send 5 to 10 staging traces. Zero customer data required.</p></li>
+            <li><span class="node">2</span><p>Get a 1-page compilability and savings breakdown in 48 hours.</p></li>
+          </ol>
         </div>
 
         <form class="card dx-form" id="dx-form" novalidate>
@@ -277,7 +210,6 @@ def refund_order(order_id, request):
           </div>
           <button class="btn primary" type="submit">Request a Free Trace Diagnostic</button>
           <p class="form-msg" id="dx-msg" role="status" aria-live="polite"></p>
-          <p class="form-note">Prefer email? Write to <a href="mailto:hello@varlin.dev">hello@varlin.dev</a>.</p>
         </form>
       </div>
     </section>
