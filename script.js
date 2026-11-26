@@ -113,56 +113,6 @@
   requestAnimationFrame(frame);
 })();
 
-/* Diagnostic request form */
-(function () {
-  // To collect requests on your own site, paste a form endpoint here (for example a Formspree URL).
-  // While it is empty, the button opens the visitor's email app with a pre-filled message instead.
-  var DIAGNOSTIC_ENDPOINT = '';
-
-  var form = document.getElementById('dx-form');
-  if (!form) { return; }
-  var msg = document.getElementById('dx-msg');
-  var btn = form.querySelector('button[type="submit"]');
-
-  form.addEventListener('submit', async function (e) {
-    e.preventDefault();
-    var email = form.email.value.trim().toLowerCase();
-    var company = form.company.value.trim();
-    var workflow = form.workflow.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      msg.textContent = 'Enter a valid email address.';
-      form.email.focus();
-      return;
-    }
-    btn.disabled = true;
-    msg.textContent = 'Sending\u2026';
-
-    var sent = false;
-    if (DIAGNOSTIC_ENDPOINT) {
-      try {
-        var res = await fetch(DIAGNOSTIC_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email: email, company: company, workflow: workflow })
-        });
-        sent = res.ok;
-      } catch (err) { sent = false; }
-    }
-
-    if (sent) {
-      msg.textContent = 'Request received. We will follow up by email.';
-      form.reset();
-    } else {
-      msg.textContent = 'Opening your email app to finish your request.';
-      var body = 'Please send me the free trace diagnostic.\n\nWork email: ' + email +
-        '\nCompany: ' + (company || '-') + '\nWhat the agent does: ' + (workflow || '-');
-      window.location.href = 'mailto:hello@varlin.dev?subject=' +
-        encodeURIComponent('Free Trace Diagnostic request') + '&body=' + encodeURIComponent(body);
-    }
-    btn.disabled = false;
-  });
-})();
-
 /* Start the "how it works" animations when each layer scrolls into view */
 (function () {
   var layers = document.querySelectorAll('.layer');
