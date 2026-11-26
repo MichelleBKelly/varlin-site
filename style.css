@@ -33,13 +33,13 @@ body {
 
 .logo {
   justify-self: start;
-  display: block; font-weight: 500; font-size: 1.15rem; letter-spacing: 0.22em; line-height: 1;
+  display: block; font-weight: 500; font-size: 2.15rem; letter-spacing: 0.22em; line-height: 1;
   color: var(--ink); text-decoration: none;
 }
 .lam { display: inline-block; transform: scaleY(-1); }
 h1 {
   margin: 0; max-width: 15ch; text-align: center;
-  font-weight: 500; font-size: clamp(2.6rem, 8.2vw, 7.2rem);
+  font-weight: 500; font-size: clamp(2.4rem, 7.6vw, 6.6rem);
   line-height: 0.98; letter-spacing: -0.035em;
   text-wrap: balance;
 }
@@ -75,7 +75,7 @@ h1 {
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .contact {
   justify-self: start;
-  color: var(--muted); text-decoration: none; font-size: 1rem;
+  color: var(--muted); text-decoration: none; font-size: 2rem;
   border-bottom: 1px solid transparent; padding-bottom: 2px;
   transition: color .2s, border-color .2s;
 }
