@@ -77,7 +77,7 @@
 
     <section class="container" id="problem">
       <p class="eyebrow">The problem</p>
-      <h2>Production agents are stuck in interpreter mode.</h2>
+      <h2>Production agents re-think every step, every time.</h2>
       <div class="problem-grid">
         <div class="card stat-big">
           <p class="big">91.8%</p>
@@ -103,23 +103,23 @@
     </section>
 
     <section class="container" id="how">
-      <p class="eyebrow">How it works</p>
-      <h2>Classic JIT compilation, built for agent trajectories.</h2>
+      <p class="eyebrow">How it works: JIT compilation for agents</p>
+      <h2>Learn the routine once. Run it fast every time after.</h2>
       <div class="stack">
         <article class="layer" style="--i:0">
-          <div class="layer-text"><p class="kicker">Cold runs</p><h3>Observe</h3><p>Log tool calls and branching from real or staging traces.</p></div>
+          <div class="layer-text"><p class="kicker">First runs</p><h3>Observe</h3><p>Log tool calls and branching from real or staging traces.</p></div>
           <div class="v v-observe" aria-hidden="true"><i style="--w:82%;--n:0"></i><i style="--w:64%;--n:1"></i><i style="--w:90%;--n:2"></i><i style="--w:48%;--n:3"></i><i style="--w:72%;--n:4"></i><i style="--w:58%;--n:5"></i></div>
         </article>
         <article class="layer" style="--i:1">
-          <div class="layer-text"><p class="kicker">Hot paths</p><h3>Compile</h3><p>Collapse repeated calls into readable, guarded Python.</p></div>
+          <div class="layer-text"><p class="kicker">Repeated steps</p><h3>Compile</h3><p>Collapse repeated calls into readable, guarded Python.</p></div>
           <div class="v v-compile" aria-hidden="true"><div class="blocks"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i></div><span class="out"></span></div>
         </article>
         <article class="layer" style="--i:2">
-          <div class="layer-text"><p class="kicker">Warm runs</p><h3>Execute</h3><p>Run routine requests without planner LLM calls.</p></div>
+          <div class="layer-text"><p class="kicker">Every run after</p><h3>Execute</h3><p>Run routine requests without planner LLM calls.</p></div>
           <div class="v v-execute" aria-hidden="true"><p>agent loop</p><div class="lane slow"><i></i></div><p>compiled</p><div class="lane fast"><i></i></div></div>
         </article>
         <article class="layer" style="--i:3">
-          <div class="layer-text"><p class="kicker">Deoptimization</p><h3>Guard &amp; Fallback</h3><p>On an edge case, pause before any write and hand the collected state back to the LLM.</p></div>
+          <div class="layer-text"><p class="kicker">Edge cases</p><h3>Safety Net</h3><p>On an edge case, pause before any write and hand the collected state back to the LLM.</p></div>
           <div class="v v-guard" aria-hidden="true"><span class="lane-main"></span><span class="lane-fb"></span><span class="gate"></span><span class="dot a"></span><span class="dot b"></span><span class="lbl">LLM</span></div>
         </article>
       </div>
@@ -132,7 +132,7 @@
         <article class="card stat-card">
           <p class="stat">75% to 82%<span>lower cost</span></p>
           <p class="cite">SkillCache, arXiv:2611.10022</p>
-          <p class="ctx">87 SkillsBench tasks, Claude Sonnet 4.6 and Opus 4.8. Compile cost reported separately.</p>
+          <p class="ctx">87 SkillsBench tasks, Claude Sonnet 4.6 and Opus 4.8.</p>
         </article>
         <article class="card stat-card">
           <p class="stat">69% to 72%<span>lower latency</span></p>
@@ -145,7 +145,7 @@
           <p class="ctx">8 SOP-Bench procedures, after repair: 87.8% vs. 85.5% accuracy. On 79 production procedures: 93.8% vs. 96.8% completion, 24% lower cost.</p>
         </article>
       </div>
-      <p class="footnote">Benchmarks above reflect published academic studies on benchmark workloads, not guaranteed production outcomes. Actual savings depend on workflow repetitiveness and how many steps require open-ended reasoning. Request a free trace diagnostic to measure your exact workflow.</p>
+      <p class="footnote">Benchmarks above reflect published academic studies on benchmark workloads, not guaranteed production outcomes. SkillCache figures exclude the one-time compile cost. Actual savings depend on workflow repetitiveness and how many steps require open-ended reasoning. Request a free trace diagnostic to measure your exact workflow.</p>
     </section>
 
     <section class="container" id="diagnostic">
@@ -155,7 +155,7 @@
           <h2>Start with a Free Trace Diagnostic</h2>
           <ul class="dx-steps">
             <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5"/><path d="M7 9l5-5 5 5"/><path d="M5 20h14"/></svg></span><p>Send 5 to 10 staging traces. Zero customer data required.</p></li>
-            <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></svg></span><p>Get a 1-page compilability and savings breakdown.</p></li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></svg></span><p>Get a 1-page report on how much of your workflow can be automated, and what you would save.</p></li>
           </ul>
         </div>
 
