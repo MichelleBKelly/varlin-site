@@ -66,9 +66,9 @@
   <main>
 
     <section class="hero container">
-      <p class="hero-beta">Early beta: building with design partners</p>
+      <p class="hero-beta">Early preview · testing with design partners</p>
       <h1>Your agents shouldn't re-plan the same workflow on every run.</h1>
-      <p class="lede">Varlin turns repetitive AI agent workflows into guarded, executable programs. It skips unnecessary LLM planning on predictable paths and returns to model reasoning when something unexpected happens.</p>
+      <p class="lede">Varlin turns repetitive production AI agent workflows (support, ops, CRM, finance) into guarded, human-approved Python. It skips unnecessary LLM planning on predictable paths and hands control back when anything looks unexpected.</p>
       <div class="cta">
         <a class="btn primary" href="#diagnostic">Request a Free Trace Diagnostic</a>
         <a class="btn ghost" href="#how">How It Works</a>
@@ -111,7 +111,7 @@
           <div class="v v-observe" aria-hidden="true"><i style="--w:82%;--n:0"></i><i style="--w:64%;--n:1"></i><i style="--w:90%;--n:2"></i><i style="--w:48%;--n:3"></i><i style="--w:72%;--n:4"></i><i style="--w:58%;--n:5"></i></div>
         </article>
         <article class="layer" style="--i:1">
-          <div class="layer-text"><p class="kicker">Repeated steps</p><h3>Compile</h3><p>Collapse repeated calls into readable, guarded Python.</p></div>
+          <div class="layer-text"><p class="kicker">Repeated steps</p><h3>Compile</h3><p>Collapse repeated calls into readable, guarded Python you review and approve before deploying.</p></div>
           <div class="v v-compile" aria-hidden="true"><div class="blocks"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i></div><span class="out"></span></div>
         </article>
         <article class="layer" style="--i:2">
@@ -119,7 +119,7 @@
           <div class="v v-execute" aria-hidden="true"><p>agent loop</p><div class="lane slow"><i></i></div><p>compiled</p><div class="lane fast"><i></i></div></div>
         </article>
         <article class="layer" style="--i:3">
-          <div class="layer-text"><p class="kicker">Edge cases</p><h3>Safety Net</h3><p>On an edge case, pause before any write and hand the collected state back to the LLM.</p></div>
+          <div class="layer-text"><p class="kicker">Edge cases</p><h3>Safety Net</h3><p>Writes are buffered until every check passes. On an edge case, nothing mutates—Varlin hands the data it already fetched straight back to the LLM.</p></div>
           <div class="v v-guard" aria-hidden="true"><span class="lane-main"></span><span class="lane-fb"></span><span class="gate"></span><span class="dot a"></span><span class="dot b"></span><span class="lbl">LLM</span></div>
         </article>
       </div>
@@ -155,7 +155,7 @@
           <h2>Start with a Free Trace Diagnostic</h2>
           <ul class="dx-steps">
             <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V5"/><path d="M7 9l5-5 5 5"/><path d="M5 20h14"/></svg></span><p>Send 5 to 10 staging traces. Zero customer data required.</p></li>
-            <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></svg></span><p>Get a 1-page report on how much of your workflow can be automated, and what you would save.</p></li>
+            <li><span class="ico"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M10 12h5M10 16h5"/></svg></span><p>Get a 1-page report on how much of your workflow can be compiled, and what you'd save in latency and spend.</p></li>
           </ul>
         </div>
 
